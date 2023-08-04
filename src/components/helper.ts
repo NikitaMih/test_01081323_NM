@@ -1,25 +1,29 @@
+class CreateBlock {
+  id: number;
+  position: number;
+  color: string;
+  empty: boolean;
+  active: boolean;
+
+  constructor(id: number, position: number, color: string, empty: boolean, active: boolean){
+    this.id = id;
+    this.position = position;
+    this.color = color;
+    this.empty = empty;
+    this.active = active;
+  }
+};
+
 export const writeBlockInArr = (id: number, arr: [], color: string, count: number): any[] => {
     let newLoco: any[] = [...arr];  
     for ( let i = 0; i < count; i++ ) {
       for ( let block = 0; block < 100; block++ ) {
         if (!newLoco[block]) {
-          const addEmptyBlock = {
-            id: 0,
-            position: block,
-            color: '',
-            empty: true,
-            active: false,
-          };
+          const addEmptyBlock = new CreateBlock(0, block, '', true, false);
           newLoco.push(addEmptyBlock);
         };
         if (newLoco[block].empty === true) {
-          newLoco[block] = {
-            id: id,
-            position: block,
-            color: color,
-            empty: false,
-            active: false,
-          };
+          newLoco[block] = new CreateBlock(id, block, color, false, false);
           break;
         };
       };
